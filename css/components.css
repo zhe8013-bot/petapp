@@ -1,0 +1,660 @@
+/* === 基础手账装饰元素 === */
+.notebook-card {
+  background: #ffffff !important;
+  border: 1.5px solid rgba(92, 74, 60, 0.12) !important;
+  box-shadow: 0 4px 16px rgba(92, 74, 60, 0.08), 0 1px 3px rgba(92, 74, 60, 0.05) !important;
+  border-radius: 22px !important;
+  position: relative;
+  overflow: visible !important;
+}
+
+/* 半透明手账格子胶带 */
+.tape-decor {
+  position: absolute;
+  width: 65px;
+  height: 18px;
+  background: rgba(228, 158, 130, 0.25);
+  background-image: 
+    linear-gradient(rgba(228, 158, 130, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(228, 158, 130, 0.1) 1px, transparent 1px);
+  background-size: 5px 5px;
+  border-left: 1.5px dashed rgba(92, 74, 60, 0.15);
+  border-right: 1.5px dashed rgba(92, 74, 60, 0.15);
+  transform: rotate(-10deg);
+  top: -8px;
+  left: 25px;
+  z-index: 10;
+  pointer-events: none;
+}
+.tape-decor.green {
+  background: rgba(127, 161, 103, 0.35);
+  background-image: 
+    linear-gradient(rgba(127, 161, 103, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(127, 161, 103, 0.15) 1px, transparent 1px);
+  transform: rotate(8deg);
+  left: auto;
+  right: 25px;
+  top: -6px;
+}
+
+/* 曲别针效果 */
+.paper-clip {
+  position: absolute;
+  width: 14px;
+  height: 36px;
+  border: 2px solid rgba(92, 74, 60, 0.3);
+  border-radius: 8px;
+  background: #f7ece1;
+  box-shadow: 0 2px 6px rgba(92, 74, 60, 0.1);
+  top: -15px;
+  left: 45px;
+  z-index: 15;
+  transform: rotate(5deg);
+  pointer-events: none;
+}
+
+/* === 底部固定导航栏 === */
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 74px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px) saturate(130%);
+  -webkit-backdrop-filter: blur(20px) saturate(130%);
+  border-top: 1px solid rgba(92, 74, 60, 0.08);
+  box-shadow: 0 -4px 20px rgba(92, 74, 60, 0.05);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 10px 10px 10px;
+  z-index: 900;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  flex: 1;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.nav-item .icon-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--text-secondary);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.nav-item .label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-top: 2px;
+  transition: all 0.25s ease;
+  opacity: 0.8;
+}
+
+/* 激活状态 */
+.nav-item.active .icon-circle {
+  background: var(--accent-green) !important;
+  color: #ffffff !important;
+  transform: translateY(-4px) scale(1.05);
+  border: none;
+  box-shadow: 0 4px 14px rgba(127, 161, 103, 0.35), 0 2px 6px rgba(127, 161, 103, 0.2);
+}
+
+.nav-item.active .label {
+  color: var(--accent-green);
+  opacity: 1;
+  font-weight: 800;
+}
+
+/* === 弹出窗口 Modal === */
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(61, 53, 46, 0.45);
+  backdrop-filter: blur(4px);
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  display: flex;
+  align-items: flex-end;
+  /* 从底部弹出，符合手机应用习惯 */
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-container {
+  width: 100%;
+  background: var(--bg-color);
+  border-radius: 32px 32px 0 0;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.15);
+  padding: 24px 20px 34px 20px;
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.15, 0.85, 0.35, 1);
+  max-height: 85%;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-overlay.active .modal-container {
+  transform: translateY(0);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-shrink: 0;
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.modal-close {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(92, 74, 60, 0.08);
+  font-size: 14px;
+  border: 1px solid rgba(92, 74, 60, 0.06);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-close:hover {
+  background: #f7f4f0;
+  transform: scale(1.05);
+}
+
+.modal-close:active {
+  transform: scale(0.95);
+}
+
+.modal-body {
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.modal-body::-webkit-scrollbar {
+  display: none;
+}
+
+/* 表单输入样式 */
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.form-control {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-inner-light), var(--shadow-inner-dark);
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-size: 13px;
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-control:focus {
+  border-color: var(--accent-peach);
+}
+
+textarea.form-control {
+  resize: none;
+  height: 80px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.modal-footer {
+  margin-top: 10px;
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.modal-btn {
+  flex: 1;
+  padding: 13px;
+  border-radius: 16px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-btn:active {
+  transform: scale(0.97);
+}
+
+.modal-btn.btn-cancel {
+  background: #ffffff;
+  color: var(--text-secondary);
+  box-shadow: var(--shadow-light), var(--shadow-dark);
+}
+
+.modal-btn.btn-submit {
+  background: linear-gradient(135deg, #f5bda5 0%, #e08f65 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(224, 143, 101, 0.25);
+}
+
+/* === 互动猫咪看板娘挂件 === */
+.cute-pet-widget {
+  position: absolute;
+  bottom: 84px;
+  right: 14px;
+  width: 72px;
+  height: 72px;
+  z-index: 998;
+  cursor: pointer;
+  transition: transform 0.2s;
+  user-select: none;
+}
+
+.cute-pet-widget:hover {
+  transform: scale(1.08);
+}
+
+.cute-pet-widget:active {
+  transform: scale(0.92);
+}
+
+.svg-cat {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.cat-head {
+  transform-origin: 50px 40px;
+  animation: catHeadBreathe 3s ease-in-out infinite;
+}
+
+.cat-ear {
+  transform-origin: bottom center;
+}
+
+.ear-left-inner {
+  animation: earWiggleLeft 6s ease-in-out infinite;
+}
+
+.ear-right-inner {
+  animation: earWiggleRight 6.3s ease-in-out infinite;
+}
+
+.cat-eye {
+  transform-origin: center;
+  animation: catBlink 4s ease-in-out infinite;
+}
+
+.cat-eye-shine {
+  transform-origin: center;
+  animation: catBlinkShine 4s ease-in-out infinite;
+}
+
+@keyframes catHeadBreathe {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(2px);
+  }
+}
+
+@keyframes earWiggleLeft {
+  0%,
+  90%,
+  100% {
+    transform: rotate(0);
+  }
+  55% {
+    transform: rotate(-8deg);
+  }
+}
+
+@keyframes earWiggleRight {
+  0%,
+  92%,
+  100% {
+    transform: rotate(0);
+  }
+  56% {
+    transform: rotate(8deg);
+  }
+}
+
+@keyframes catBlink {
+  0%,
+  95%,
+  100% {
+    transform: scaleY(1);
+  }
+  97% {
+    transform: scaleY(0.15);
+  }
+}
+
+@keyframes catBlinkShine {
+  0%,
+  95%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  97% {
+    opacity: 0;
+    transform: scale(0.1);
+  }
+}
+
+/* 看板娘对话气泡 */
+.pet-bubble {
+  position: absolute;
+  bottom: 80px;
+  right: 8px;
+  background: #fffdf9;
+  color: var(--text-primary);
+  border: 2px solid #ffccd5;
+  border-radius: 20px;
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  width: 150px;
+  box-shadow: 0 6px 16px rgba(255, 174, 187, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px) scale(0.8);
+  transform-origin: bottom right;
+  transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+  line-height: 1.4;
+  pointer-events: none;
+  z-index: 999;
+}
+
+.pet-bubble.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.pet-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  right: 28px;
+  width: 12px;
+  height: 12px;
+  background: #fffdf9;
+  border-right: 2px solid #ffccd5;
+  border-bottom: 2px solid #ffccd5;
+  transform: rotate(45deg);
+}
+
+/* 物理晃动动效 */
+.wobble-active {
+  animation: cuteWobble 0.5s ease-in-out;
+}
+
+@keyframes cuteWobble {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(-10deg) scale(1.06);
+  }
+  50% {
+    transform: rotate(8deg) scale(0.94);
+  }
+  75% {
+    transform: rotate(-5deg) scale(1.02);
+  }
+}
+
+/* 按钮扫光高光动效 */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 30%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+  transform: skewX(-25deg);
+  animation: shineSweep 4.5s ease-in-out infinite;
+}
+
+@keyframes shineSweep {
+  0% {
+    left: -50%;
+  }
+  30% {
+    left: 150%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+
+/* === 各种全局公共动画 === */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shine {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+}
+
+@keyframes wobble {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  15% {
+    transform: rotate(-8deg);
+  }
+  30% {
+    transform: rotate(6deg);
+  }
+  45% {
+    transform: rotate(-4deg);
+  }
+  60% {
+    transform: rotate(2deg);
+  }
+  75% {
+    transform: rotate(-1deg);
+  }
+}
+
+/* === 全局柔和覆写：磨砂玻璃温柔风 === */
+.pet-card,
+.reminder-card,
+.life-category-card,
+.life-chart-panel,
+.recent-memory-card,
+.overview-item,
+.health-metric-card,
+.checkup-diary-item,
+.basic-info-table,
+.banner-card,
+.health-summary-panel,
+.medical-status-card,
+.meta-row-hand,
+.diary-item-card-hand {
+  border: 1.5px solid rgba(92, 74, 60, 0.1) !important;
+  box-shadow: 0 4px 16px rgba(92, 74, 60, 0.07), 0 1.5px 4px rgba(92, 74, 60, 0.04) !important;
+  background-color: #ffffff !important;
+  border-radius: 20px !important;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative;
+}
+
+.pet-card:hover,
+.reminder-card:hover,
+.life-category-card:hover,
+.life-chart-panel:hover,
+.recent-memory-card:hover,
+.overview-item:hover,
+.health-metric-card:hover,
+.banner-card:hover,
+.medical-status-card:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 28px rgba(92, 74, 60, 0.1), 0 2px 6px rgba(92, 74, 60, 0.06) !important;
+}
+
+/* 输入表单框柔和风格 */
+.form-control,
+.modal-btn {
+  border: 1.5px solid rgba(92, 74, 60, 0.12) !important;
+  box-shadow: 0 2px 8px rgba(92, 74, 60, 0.06) !important;
+  border-radius: 14px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* 表单聚焦柔和光晕 */
+.form-control:focus {
+  border-color: rgba(127, 161, 103, 0.5) !important;
+  box-shadow: 0 0 0 3px rgba(127, 161, 103, 0.12), 0 2px 8px rgba(92, 74, 60, 0.06) !important;
+}
+
+/* 按钮点击柔和回弹 */
+.modal-btn:active,
+.hand-btn:active {
+  transform: scale(0.97) !important;
+  box-shadow: 0 1px 4px rgba(92, 74, 60, 0.08) !important;
+}
+
+.modal-btn:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(92, 74, 60, 0.1) !important;
+}
+
+/* 图标柔和描边 */
+i[data-lucide] {
+  stroke: #5c4a3c !important;
+  stroke-width: 2 !important;
+}
+
+/* 爱心飘落粒子 */
+.heart-particle {
+  position: absolute;
+  font-size: 16px;
+  pointer-events: none;
+  animation: heartFlyUp 0.8s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+  z-index: 100;
+}
+
+@keyframes heartFlyUp {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(0.6);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--x), var(--y)) scale(var(--s));
+  }
+}
+
+/* 呼吸浮动动画 */
+.chibi-pet-img {
+  animation: chibiBreathe 4s ease-in-out infinite;
+}
+
+@keyframes chibiBreathe {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-6px) scale(1.03);
+  }
+}
+
+/* Q弹跳跃 */
+.chibi-jumping-anim {
+  animation: chibiJump 0.65s cubic-bezier(0.25, 0.8, 0.25, 1.25);
+}
+
+@keyframes chibiJump {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  20% {
+    transform: translateY(4px) scale(1.1, 0.85);
+  }
+  50% {
+    transform: translateY(-24px) scale(0.9, 1.15);
+  }
+  75% {
+    transform: translateY(2px) scale(1.05, 0.95);
+  }
+}

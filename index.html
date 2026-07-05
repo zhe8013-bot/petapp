@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>PetPlanet - 记录奶盖的成长与守护</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+</head>
+
+<body>
+
+  <!-- PC 端 3D 浮动背景球 -->
+  <div class="jelly-glob glob-1"></div>
+  <div class="jelly-glob glob-2"></div>
+  <div class="jelly-glob glob-3"></div>
+
+  <div class="web-container">
+
+    <!-- PC 端左侧品牌故事墙 -->
+    <aside class="web-brand-aside">
+      <div class="brand-header">
+        <h1 class="brand-logo">PetPlanet<span>🐾</span></h1>
+      </div>
+      <p class="brand-slogan">记录奶盖的成长与守护 🌸</p>
+      <p class="brand-desc">
+        欢迎来到奶盖的秘密基地！在这里记录每一个温暖的瞬间，查看健康趋势，管理日常消耗，保存那些慵懒时光的回忆。爱与守护，因为有你而更温柔。
+      </p>
+
+      <div class="brand-meta-card">
+        <div class="meta-row">
+          <div class="meta-icon">🐶</div>
+          <div class="meta-text">
+            <span class="meta-label">守护宝贝</span>
+            <span class="meta-value">奶盖 (Maltese Dog)</span>
+          </div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-icon">💝</div>
+          <div class="meta-text">
+            <span class="meta-label">陪伴时光</span>
+            <span class="meta-value"><span class="pet-days-text">428</span> 天的朝朝暮暮</span>
+          </div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-icon">✨</div>
+          <div class="meta-text">
+            <span class="meta-label">视觉风格</span>
+            <span class="meta-value">奶油流体磨砂玻璃 · 高定可爱风</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 手机外壳模拟器 -->
+    <div class="phone-emulator">
+      <div class="phone-screen">
+
+        <!-- 流体渐变彩色球 -->
+        <div class="bg-blob blob-pink"></div>
+        <div class="bg-blob blob-yellow"></div>
+        <div class="bg-blob blob-blue"></div>
+
+        <!-- 顶部状态栏 -->
+        <div class="status-bar">
+          <div class="time" id="status-time">19:56</div>
+          <div class="right-icons">
+            <i data-lucide="signal" style="width: 13px; height: 13px;"></i>
+            <i data-lucide="wifi" style="width: 13px; height: 13px;"></i>
+            <i data-lucide="battery" style="width: 16px; height: 16px;"></i>
+          </div>
+        </div>
+
+        <!-- 内容视口 -->
+        <div class="content-viewport">
+
+          <!-- ================= 首页 ================= -->
+          <div class="page active" id="home-page">
+            <header class="app-header">
+              <div class="logo" style="flex-direction: column; align-items: flex-start; gap: 0;">
+                <div style="font-size: 24px; font-weight: 800; display: flex; align-items: center; gap: 4px; color: var(--text-primary);">
+                  PetPlanet<span style="font-size: 16px;">🐾</span>
+                </div>
+                <div style="font-size: 11px; font-weight: 600; color: var(--text-secondary); margin-top: -2px;">
+                  记录每一刻，陪伴每一天 🍃
+                </div>
+              </div>
+              <div class="notification-bell" onclick="alert('暂无未读系统通知哦')">
+                <i data-lucide="bell" style="width: 20px; height: 20px; stroke: #5c4a3c; stroke-width: 2.5;"></i>
+                <div class="badge" style="background: var(--accent-peach);"></div>
+              </div>
+            </header>
+
+            <div class="scrollable-content">
+              <!-- 手账风格宠物名片 -->
+              <div class="pet-card notebook-card" id="interactive-pet-card" style="height: auto; padding: 20px; display: flex; gap: 16px; overflow: visible; background: #fffdf9 !important;">
+                <!-- 撕纸胶带贴纸 -->
+                <div class="tape-decor"></div>
+                <div class="tape-decor green"></div>
+
+                <!-- 左侧：宠物照片 -->
+                <div class="pet-avatar-wrapper" style="flex: 0 0 120px; display: flex; align-items: center; justify-content: center; position: relative; overflow: visible;">
+                  <div class="chibi-hearts-container" id="chibi-hearts-container"></div>
+                  <img src="cat_main.png" alt="奶盖" class="chibi-pet-img" id="pet-avatar" onclick="app.playChibiClickEffect()" style="width: 115px; height: auto; object-fit: contain; z-index: 2; cursor: pointer; filter: drop-shadow(0 6px 16px rgba(92, 74, 60, 0.1)); transition: transform 0.2s;" draggable="false">
+                  <div class="sparkle" style="position: absolute; right: 2px; top: 10px; font-size: 14px; color: var(--accent-yellow-cute); animation: shine 3s infinite;">✨</div>
+                </div>
+
+                <!-- 右侧：信息面板 -->
+                <div class="pet-info-hand" style="flex: 1; display: flex; flex-direction: column; justify-content: center; z-index: 2; gap: 10px;">
+                  <h1 class="pet-name" style="font-size: 26px; font-weight: 800; display: flex; align-items: center; gap: 6px; color: var(--text-primary);">
+                    <span class="pet-name-text">奶盖</span>
+                    <span style="color: var(--accent-peach); font-size: 16px; animation: shine 2s infinite ease-in-out;">❤️</span>
+                  </h1>
+                  
+                  <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                    <span style="background: #e1f0f7; color: #2b78a1; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 20px;">♂️ 男孩</span>
+                    <span style="background: #fff3db; color: #a1782b; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 20px;">2岁</span>
+                    <span style="background: #ffe3e6; color: #a12b43; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 20px;">🎂 05/12</span>
+                  </div>
+
+                  <div class="stats-row" style="display: flex; gap: 6px;">
+                    <div style="flex: 1; background: rgba(239, 244, 235, 0.6); border-radius: 12px; padding: 8px 4px; display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                      <span style="font-size: 9px; color: var(--text-secondary); font-weight: 600;">体重</span>
+                      <span style="font-size: 13px; font-weight: 800; color: var(--text-primary);"><span class="pet-weight-text">6.2</span><span style="font-size: 9px; font-weight: 600;">kg</span></span>
+                    </div>
+                    <div style="flex: 1; background: rgba(253, 242, 236, 0.6); border-radius: 12px; padding: 8px 4px; display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                      <span style="font-size: 9px; color: var(--text-secondary); font-weight: 600;">陪伴</span>
+                      <span style="font-size: 13px; font-weight: 800; color: var(--text-primary);"><span class="pet-days-text">428</span><span style="font-size: 9px; font-weight: 600;">天</span></span>
+                    </div>
+                    <div style="flex: 1; background: rgba(239, 244, 235, 0.6); border-radius: 12px; padding: 8px 4px; display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                      <span style="font-size: 9px; color: var(--text-secondary); font-weight: 600;">状态</span>
+                      <span style="font-size: 13px; font-weight: 800; color: var(--accent-green);">良好 ✨</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 双操作按钮 -->
+              <div style="display: flex; gap: 10px; margin: -6px 0 18px 0;">
+                <button class="hand-btn green" onclick="app.openModal('new-memory-modal')" style="flex: 1; background: linear-gradient(135deg, #8fb87a 0%, #7fa167 100%); color: #ffffff; border: none; border-radius: 16px; padding: 12px 14px; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 4px 14px rgba(127, 161, 103, 0.25); font-family: var(--font-main);">
+                  <i data-lucide="edit-3" style="width: 14px; height: 14px; stroke-width: 2.5;"></i>
+                  快速记录
+                </button>
+                <button class="hand-btn white" onclick="app.switchTab('profile')" style="flex: 1; background: #ffffff; color: var(--text-primary); border: 1.5px solid rgba(92, 74, 60, 0.1); border-radius: 16px; padding: 12px 14px; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 3px 10px rgba(92, 74, 60, 0.06); font-family: var(--font-main);">
+                  <i data-lucide="folder" style="width: 14px; height: 14px; stroke-width: 2.5;"></i>
+                  查看档案
+                </button>
+              </div>
+
+              <!-- 快捷操作栏 -->
+              <div class="quick-actions-row">
+                <div class="quick-action-item" onclick="app.switchTab('health')">
+                  <div class="quick-action-btn">
+                    <img src="icon_health_3d.png" alt="看病" class="quick-btn-img">
+                  </div>
+                  <span class="quick-action-label">看病</span>
+                </div>
+                <div class="quick-action-item" onclick="app.switchTab('profile')">
+                  <div class="quick-action-btn">
+                    <img src="icon_weight_3d.png" alt="体重" class="quick-btn-img">
+                  </div>
+                  <span class="quick-action-label">体重</span>
+                </div>
+                <div class="quick-action-item" onclick="app.switchTab('life')">
+                  <div class="quick-action-btn">
+                    <img src="icon_spend_3d.png" alt="消耗" class="quick-btn-img">
+                  </div>
+                  <span class="quick-action-label">消耗</span>
+                </div>
+                <div class="quick-action-item" onclick="app.switchTab('memories')">
+                  <div class="quick-action-btn">
+                    <img src="icon_photo_3d.png" alt="照片" class="quick-btn-img">
+                  </div>
+                  <span class="quick-action-label">照片</span>
+                </div>
+                <div class="arrow-next" onclick="alert('更多功能开发中~')">
+                  <i data-lucide="chevron-right" style="width: 18px; height: 18px;"></i>
+                </div>
+              </div>
+
+              <!-- 今日提醒 (3个横向手账卡) -->
+              <h2 class="section-title" style="font-size: 16px; font-weight: 800; color: var(--text-primary); margin: 20px 0 10px 0; display: flex; justify-content: space-between; align-items: center;">
+                <span>⏰ 今日提醒</span>
+                <span style="font-size: 11px; color: var(--text-secondary); font-weight: 600; cursor: pointer;">查看全部 &gt;</span>
+              </h2>
+              <div class="reminders-scroll-row" style="display: flex; gap: 10px; overflow-x: auto; padding-bottom: 8px; scrollbar-width: none;">
+                <!-- 卡片 1: 驱虫 -->
+                <div class="reminder-card-hand" style="flex: 0 0 105px; background: #fff2ee; border: 1px solid rgba(92, 74, 60, 0.08); box-shadow: 0 3px 10px rgba(92, 74, 60, 0.06); border-radius: 16px; padding: 10px 8px; display: flex; flex-direction: column; align-items: center; text-align: center; transition: transform 0.3s ease;">
+                  <span style="font-size: 20px; margin-bottom: 4px;">🐞</span>
+                  <span style="font-size: 11px; font-weight: 800; color: var(--text-primary);">驱虫</span>
+                  <span style="font-size: 9px; color: var(--text-secondary); margin-top: 2px; font-weight: 600;">今天 20:00</span>
+                </div>
+                <!-- 卡片 2: 洗澡 -->
+                <div class="reminder-card-hand" style="flex: 0 0 105px; background: #eef7fc; border: 1px solid rgba(92, 74, 60, 0.08); box-shadow: 0 3px 10px rgba(92, 74, 60, 0.06); border-radius: 16px; padding: 10px 8px; display: flex; flex-direction: column; align-items: center; text-align: center; transition: transform 0.3s ease;">
+                  <span style="font-size: 20px; margin-bottom: 4px;">🛁</span>
+                  <span style="font-size: 11px; font-weight: 800; color: var(--text-primary);">洗澡</span>
+                  <span style="font-size: 9px; color: var(--text-secondary); margin-top: 2px; font-weight: 600;">明天 10:00</span>
+                </div>
+                <!-- 卡片 3: 称重 -->
+                <div class="reminder-card-hand" style="flex: 0 0 105px; background: #effaee; border: 1px solid rgba(92, 74, 60, 0.08); box-shadow: 0 3px 10px rgba(92, 74, 60, 0.06); border-radius: 16px; padding: 10px 8px; display: flex; flex-direction: column; align-items: center; text-align: center; transition: transform 0.3s ease;">
+                  <span style="font-size: 20px; margin-bottom: 4px;">⚖️</span>
+                  <span style="font-size: 11px; font-weight: 800; color: var(--text-primary);">称重</span>
+                  <span style="font-size: 9px; color: var(--text-secondary); margin-top: 2px; font-weight: 600;">后天 09:00</span>
+                </div>
+              </div>
+
+              <!-- 快速记录手账按键行 -->
+              <h2 class="section-title" style="font-size: 16px; font-weight: 800; color: var(--text-primary); margin: 20px 0 10px 0;">
+                🐾 快速记录
+              </h2>
+              <div class="quick-record-row-hand" style="display: flex; justify-content: space-between; background: rgba(255, 252, 247, 0.7); border: 1.5px dashed rgba(176, 153, 136, 0.3); border-radius: 20px; padding: 14px 12px; margin-bottom: 20px;">
+                <div class="quick-item-hand" onclick="app.openModal('new-memory-modal')" style="flex: 1; display: flex; flex-direction: column; align-items: center; cursor: pointer;">
+                  <div style="width: 44px; height: 44px; background: #eef7fc; border: none; box-shadow: 0 3px 10px rgba(92, 74, 60, 0.06); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 4px; transition: transform 0.2s;">💼</div>
+                  <span style="font-size: 11px; font-weight: 800; color: var(--text-primary);">病历</span>
+                </div>
+                <div class="quick-item-hand" onclick="app.switchTab('profile')" style="flex: 1; display: flex; flex-direction: column; align-items: center; cursor: pointer;">
+                  <div style="width: 44px; height: 44px; background: #fff9eb; border: none; box-shadow: 0 3px 10px rgba(92, 74, 60, 0.06); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 4px; transition: transform 0.2s;">⚖️</div>
+                  <span style="font-size: 11px; font-weight: 800; color: var(--text-primary);">体重</span>
+                </div>
+                <div class="quick-item-hand" onclick="app.switchTab('life')" style="flex: 1; display: flex; flex-direction: column; align-items: center; cursor: pointer;">
+                  <div style="width: 44px; height: 44px; background: #ffebeb; border: none; box-shadow: 0 3px 10px rgba(92, 74, 60, 0.06); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 4px; transition: transform 0.2s;">🍖</div>
+                  <span style="font-size: 11px; font-weight: 800; color: var(--text-primary);">消耗</span>
+                </div>
+                <div class="quick-item-hand" onclick="app.switchTab('memories')" style="flex: 1; display: flex; flex-direction: column; align-items: center; cursor: pointer;">
+                  <div style="width: 44px; height: 44px; background: #effaee; border: none; box-shadow: 0 3px 10px rgba(92, 74, 60, 0.06); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 4px; transition: transform 0.2s;">🖼️</div>
+                  <span style="font-size: 11px; font-weight: 800; color: var(--text-primary);">回忆</span>
+                </div>
+              </div>
+
+              <!-- 最近动态 (拍立得+便签组合手账) -->
+              <h2 class="section-title" style="font-size: 16px; font-weight: 800; color: var(--text-primary); margin: 20px 0 10px 0; display: flex; justify-content: space-between; align-items: center;">
+                <span>🍃 最近动态</span>
+                <span style="font-size: 11px; color: var(--text-secondary); font-weight: 600; cursor: pointer;">查看全部 &gt;</span>
+              </h2>
+              <div class="polaroid-diary-card notebook-card" style="display: flex; gap: 12px; padding: 14px; background: #fffdf9 !important; margin-bottom: 24px; align-items: center;">
+                <!-- 撕纸格子胶带 -->
+                <div class="tape-decor" style="top: -10px; left: 15px; width: 50px;"></div>
+                <div class="paper-clip" style="left: auto; right: 20px; top: -14px;"></div>
+
+                <!-- 拍立得狗狗照片 -->
+                <div class="polaroid-frame" style="width: 85px; background: #ffffff; border: 1.5px solid rgba(92, 74, 60, 0.15); box-shadow: 0 3px 10px rgba(92, 74, 60, 0.08); padding: 6px 6px 14px 6px; transform: rotate(-3deg); flex-shrink: 0; position: relative; border-radius: 4px;">
+                  <img src="cat_autumn.png" alt="奶盖秋天" style="width: 100%; height: 64px; object-fit: cover; border-radius: 2px;">
+                  <span style="position: absolute; bottom: 1px; left: 0; width: 100%; text-align: center; font-size: 7px; font-weight: 800; color: var(--text-secondary); transform: scale(0.9);">阳光公园 🐾</span>
+                </div>
+
+                <!-- 便签日记 -->
+                <div class="diary-note" style="flex: 1; font-family: var(--font-main); display: flex; flex-direction: column; justify-content: space-between; height: 85px; padding-top: 4px;">
+                  <p style="font-size: 12px; font-weight: 700; color: var(--text-primary); line-height: 1.5; margin-bottom: 6px;">
+                    奶盖今天在公园玩得很开心~ 一起跑步、追泡泡，活力满满！☀️
+                  </p>
+                  <div style="font-size: 9px; font-weight: 800; color: var(--text-tertiary); display: flex; gap: 8px;">
+                    <span>📍 阳光公园</span>
+                    <span>⏰ 今天 16:30</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ================= 生活页 ================= -->
+          <div class="page" id="life-page">
+            <header class="app-header">
+              <div class="logo">PetPlanet<span>🐾</span></div>
+              <div class="notification-bell" onclick="alert('暂无未读系统通知哦')">
+                <i data-lucide="bell" style="width: 20px; height: 20px; stroke: #5c4a3c; stroke-width: 2.5;"></i>
+                <div class="badge" style="background: var(--accent-peach);"></div>
+              </div>
+            </header>
+
+            <div class="scrollable-content">
+              <!-- 顶部消耗条幅 -->
+              <div class="banner-card">
+                <img src="cat_sleeping.png" alt="生活消耗">
+                <div class="overlay" style="background: linear-gradient(to right, rgba(251, 247, 238, 0.95) 0%, rgba(251, 247, 238, 0.8) 50%, rgba(251, 247, 238, 0) 100%);"></div>
+                <div class="banner-info">
+                  <h1 class="banner-title font-title">生活消耗 ✨</h1>
+                  <p class="banner-subtitle">记录奶盖的每一份爱与陪伴</p>
+                  <div class="date-selector" onclick="alert('选择月份功能开发中~')">
+                    2025年10月 <i data-lucide="chevron-down" style="width: 12px; height: 12px;"></i>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 消费分类 -->
+              <div class="life-categories-grid">
+                <div class="life-category-card">
+                  <div class="icon-wrapper">
+                    <i data-lucide="soup" style="color: #d2845c; width: 20px; height: 20px;"></i>
+                  </div>
+                  <span class="category-name">食物</span>
+                  <span class="category-amount">¥ 320</span>
+                  <span class="category-ratio"><span class="dot"></span>占比 50%</span>
+                </div>
+                <div class="life-category-card">
+                  <div class="icon-wrapper">
+                    <i data-lucide="bath" style="color: #64a354; width: 20px; height: 20px;"></i>
+                  </div>
+                  <span class="category-name">清洁</span>
+                  <span class="category-amount">¥ 150</span>
+                  <span class="category-ratio"><span class="dot"></span>占比 23%</span>
+                </div>
+                <div class="life-category-card">
+                  <div class="icon-wrapper">
+                    <i data-lucide="brush" style="color: #dca74e; width: 20px; height: 20px;"></i>
+                  </div>
+                  <span class="category-name">护理</span>
+                  <span class="category-amount">¥ 80</span>
+                  <span class="category-ratio"><span class="dot"></span>占比 12%</span>
+                </div>
+                <div class="life-category-card">
+                  <div class="icon-wrapper">
+                    <i data-lucide="heart-pulse" style="color: #558ca3; width: 20px; height: 20px;"></i>
+                  </div>
+                  <span class="category-name">健康</span>
+                  <span class="category-amount">¥ 80</span>
+                  <span class="category-ratio"><span class="dot"></span>占比 15%</span>
+                </div>
+              </div>
+
+              <!-- 体重与消耗区块 -->
+              <div class="life-charts-row">
+                <div class="life-chart-panel">
+                  <div class="panel-header">
+                    <div>
+                      <span class="panel-title">体重趋势</span>
+                      <span class="panel-sub">最近 30 天</span>
+                    </div>
+                    <span class="weight-diff">↓ 0.1 kg</span>
+                  </div>
+                  <div class="svg-chart-box" id="life-weight-chart"></div>
+                </div>
+                <div class="total-spend-panel">
+                  <img
+                    src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e08f65'><path d='M21 18V19C21 20.1 20.1 21 19 21H5C3.89 21 3 20.1 3 19V5C3 3.9 3.89 3 5 3H19C20.1 3 21 3.9 21 5V6H12C10.9 6 10 6.9 10 8V16C10 17.1 10.9 18 12 18H21ZM12 16H22V8H12V16ZM16 13.5C15.17 13.5 14.5 12.83 14.5 12C14.5 11.17 15.17 10.5 16 10.5C16.83 10.5 17.5 11.17 17.5 12C17.5 12.83 16.83 13.5 16 13.5Z'/></svg>"
+                    alt="钱包" class="wallet-img">
+                  <div>
+                    <span class="panel-sub">本月消耗</span>
+                    <div class="amount-title">¥ 630</div>
+                    <span class="amount-sub">较上月 <span>↑ 18%</span></span>
+                  </div>
+                  <button class="btn-details" onclick="alert('详细账单暂未生成哦')">
+                    查看明细 <i data-lucide="arrow-right" style="width: 12px; height: 12px;"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- 用品提醒 -->
+              <div class="supplies-card">
+                <div class="card-header">
+                  <div class="header-left">
+                    <i data-lucide="bell-ring" class="bell-icon"></i>
+                    <span class="header-title">用品提醒</span>
+                  </div>
+                  <button class="btn-refill" onclick="app.refillSupplies()">
+                    去补货 <i data-lucide="shopping-cart" style="width: 12px; height: 12px;"></i>
+                  </button>
+                </div>
+                <p class="header-desc">这些用品快用完啦，记得及时补充哦~</p>
+
+                <div class="supplies-list">
+                  <div class="supply-item" id="supply-food">
+                    <img
+                      src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d2845c'><path d='M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.9-1.9C9.13 19.53 10.52 20 12 20s2.87-.47 4.34-1.09l1.9 1.9c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41l-1.62-1.79C19.26 16.07 20 14.12 20 12c0-4.97-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z'/></svg>"
+                      alt="猫粮" class="item-thumb">
+                    <div class="item-details">
+                      <div class="item-top-row">
+                        <span>猫粮</span>
+                        <span class="days" style="color: #c97951;">预计剩余 3 天</span>
+                      </div>
+                      <div class="item-sub">当前余量 10%</div>
+                      <div class="progress-container">
+                        <div class="progress-bar" style="width: 10%; background: #e08f65;"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="supply-item" id="supply-shampoo">
+                    <img
+                      src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2364a354'><path d='M19 11h-2V6c0-1.1-.9-2-2-2h-2V2H9v2H7c-1.1 0-2 .9-2 2v5H3v2h2v7c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-7h2v-2zm-6 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V9h2v2z'/></svg>"
+                      alt="沐浴露" class="item-thumb">
+                    <div class="item-details">
+                      <div class="item-top-row">
+                        <span>沐浴露</span>
+                        <span class="days" style="color: #dca74e;">预计剩余 5 天</span>
+                      </div>
+                      <div class="item-sub">当前余量 20%</div>
+                      <div class="progress-container">
+                        <div class="progress-bar" style="width: 20%; background: #f5bda5;"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="supply-item" id="supply-can">
+                    <img
+                      src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23dca74e'><path d='M4 6V4h16v2H4zm16 11V8H4v9c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2zM9 13c0-1.66 1.34-3 3-3s3 1.34 3 3-1.34 3-3 3-3-1.34-3-3z'/></svg>"
+                      alt="主食罐头" class="item-thumb">
+                    <div class="item-details">
+                      <div class="item-top-row">
+                        <span>主食罐头</span>
+                        <span class="days" style="color: #dca74e;">预计剩余 6 天</span>
+                      </div>
+                      <div class="item-sub">当前余量 25%</div>
+                      <div class="progress-container">
+                        <div class="progress-bar" style="width: 25%; background: #f5bda5;"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 底部经典语录 -->
+              <div class="quote-card" style="border: 1.5px solid rgba(92, 74, 60, 0.1); box-shadow: 0 4px 16px rgba(92, 74, 60, 0.07); background: #ffffff;">
+                <div class="mini-photo">
+                  <img src="cat_avatar.png" alt="奶盖照片" style="border-radius: 8px;">
+                </div>
+                <div class="quote-content">
+                  <p class="quote-text">每一份用心的记录，都是我们给彼此的温柔时光。💛</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ================= 健康页 ================= -->
+          <div class="page" id="health-page">
+            <header class="app-header">
+              <div class="logo">PetPlanet<span>🐾</span></div>
+              <div class="notification-bell" onclick="alert('暂无未读系统通知哦')">
+                <i data-lucide="bell" style="width: 20px; height: 20px; stroke: #5c4a3c; stroke-width: 2.5;"></i>
+                <div class="badge" style="background: var(--accent-peach);"></div>
+              </div>
+            </header>
+
+            <div class="scrollable-content">
+              <!-- 档案入口 -->
+              <div class="health-banner" style="border: 1.5px solid rgba(92, 74, 60, 0.1); box-shadow: 0 4px 16px rgba(92, 74, 60, 0.07); background: #ffffff;">
+                <div class="profile-part">
+                  <img src="cat_avatar.png" alt="头像" class="avatar" style="border-radius: 50%;">
+                  <div class="info">
+                    <span class="name pet-name-text">奶盖</span>
+                    <span class="sub"><span class="pet-age-text">2岁</span> · <span
+                        class="pet-breed-text">马尔济斯</span></span>
+                  </div>
+                </div>
+                <button class="btn-archive" onclick="app.switchTab('profile')" style="border: 1px solid rgba(92, 74, 60, 0.08); background: #fffcf7; color: var(--text-primary); font-weight: 800;">
+                  健康档案 <i data-lucide="chevron-right" style="width: 12px; height: 12px;"></i>
+                </button>
+              </div>
+
+              <!-- 标题说明 -->
+              <div class="intro-card" style="border: 2px dashed #b09988; background: #fffdf9;">
+                <div class="heart-badge" style="background: #ffebeb; border: 1.5px solid #5c4a3c;">
+                  <i data-lucide="heart" style="color: var(--accent-peach); fill: var(--accent-peach); width: 22px; height: 22px;"></i>
+                </div>
+                <div class="intro-details">
+                  <span class="title">健康记录 🐾</span>
+                  <span class="desc">记录每一次守护，见证奶盖的健康成长</span>
+                </div>
+              </div>
+
+              <!-- 健康指标指标 -->
+              <div class="health-metrics-grid">
+                <div class="health-metric-card">
+                  <div class="header">
+                    <div class="icon-box">
+                      <img src="icon_weight_3d.png" alt="体重" style="width: 20px; height: 20px; object-fit: contain;">
+                    </div>
+                    <span>当前体重</span>
+                  </div>
+                  <div class="value-row">
+                    <span class="value pet-weight-text">3.85</span>
+                    <span class="unit">kg</span>
+                    <span class="diff-tag">↑ 0.1 kg</span>
+                  </div>
+                  <div class="sparkline-box" id="health-weight-spark"></div>
+                  <span class="bottom-text">4月15日记录</span>
+                </div>
+                <div class="health-metric-card">
+                  <div class="header">
+                    <div class="icon-box">
+                      <i data-lucide="syringe" style="color: #c97951; width: 14px; height: 14px;"></i>
+                    </div>
+                    <span>下次疫苗接种</span>
+                  </div>
+                  <div class="value-row" style="margin-top: 10px;">
+                    <span class="value"
+                      style="font-size: 17px; font-weight: 700; font-family: 'Outfit';">2025.11.15</span>
+                  </div>
+                  <span class="sub-tag">狂犬病疫苗</span>
+                  <span class="bottom-text" style="margin-top: 10px; font-weight: 600;">还有 30 天</span>
+                </div>
+              </div>
+
+              <!-- 时间轴 -->
+              <div class="timeline-container">
+                <!-- 常规体检 -->
+                <div class="timeline-item">
+                  <div class="timeline-node">
+                    <i data-lucide="paw-print" style="width: 10px; height: 10px; fill: #f7ce68; stroke: none;"></i>
+                  </div>
+                  <div class="timeline-card">
+                    <div class="card-header">
+                      <div class="title-area">
+                        <span class="main-title">常规体检 (Annual Checkup)</span>
+                        <span class="date">2025.10.24</span>
+                      </div>
+                    </div>
+                    <p class="desc">完成全面性格检查，奶盖整体状态良好，毛发光泽，眼睛明亮，推荐继续保持当前饮食与运动习惯。</p>
+                    <div class="tags-row">
+                      <span class="tag">体格检查</span>
+                      <span class="tag">心肺听诊</span>
+                      <span class="tag">粪便检查</span>
+                      <span class="tag">驱虫完成</span>
+                    </div>
+                    <div class="footer-row">
+                      <span class="location">
+                        <i data-lucide="map-pin" style="width: 11px; height: 11px;"></i> Happy Paws 宠物诊所
+                      </span>
+                      <span class="cost-action">
+                        ¥ 120 <i data-lucide="chevron-right" style="width: 14px; height: 14px;"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 疫苗接种 -->
+                <div class="timeline-item">
+                  <div class="timeline-node">
+                    <i data-lucide="syringe" style="width: 10px; height: 10px;"></i>
+                  </div>
+                  <div class="timeline-card">
+                    <div class="card-header">
+                      <div class="title-area">
+                        <span class="main-title">疫苗接种 (Vaccination)</span>
+                        <span class="date">2025.10.12</span>
+                      </div>
+                    </div>
+                    <p class="desc">接种了猫三联疫苗与狂犬病疫苗，奶盖接种后精神良好，无不良反应。</p>
+                    <div class="tags-row">
+                      <span class="tag">猫三联疫苗</span>
+                      <span class="tag">狂犬病疫苗</span>
+                      <span class="tag">DHP</span>
+                      <span class="tag">Rabies</span>
+                    </div>
+                    <div class="footer-row">
+                      <span class="location">
+                        <i data-lucide="map-pin" style="width: 11px; height: 11px;"></i> Happy Paws 宠物诊所
+                      </span>
+                      <span class="cost-action">
+                        ¥ 180 <i data-lucide="chevron-right" style="width: 14px; height: 14px;"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 轻微划伤 -->
+                <div class="timeline-item">
+                  <div class="timeline-node">
+                    <i data-lucide="shield-alert" style="width: 10px; height: 10px;"></i>
+                  </div>
+                  <div class="timeline-card">
+                    <div class="card-header">
+                      <div class="title-area">
+                        <span class="main-title">轻微划伤 (Minor Scratch)</span>
+                        <span class="date">2025.08.05</span>
+                      </div>
+                    </div>
+                    <p class="desc">左前爪掌轻微划伤，已清洁消毒并涂抹抗菌软膏，建议保持干燥，观察愈合情况。</p>
+                    <div class="tags-row">
+                      <span class="tag">清洁消毒</span>
+                      <span class="tag">抗菌软膏</span>
+                      <span class="tag">居家护理建议</span>
+                    </div>
+                    <div class="footer-row">
+                      <span class="location">
+                        <i data-lucide="home" style="width: 11px; height: 11px;"></i> Home Care
+                      </span>
+                      <span class="cost-action">
+                        <i data-lucide="chevron-right" style="width: 14px; height: 14px;"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ================= 回忆页 ================= -->
+          <div class="page" id="memories-page">
+            <header class="app-header">
+              <div class="logo">PetPlanet<span>🐾</span></div>
+              <div class="notification-bell" onclick="alert('暂无未读系统通知哦')">
+                <i data-lucide="bell" style="width: 20px; height: 20px;"></i>
+                <div class="badge"></div>
+              </div>
+            </header>
+
+            <div class="scrollable-content">
+              <!-- 头部 -->
+              <div style="margin-bottom: 14px;">
+                <h1 style="font-size: 24px; font-weight: 700; color: var(--text-primary);">成长回忆 <span
+                    style="font-size: 18px; color: #f5bda5;">✨</span></h1>
+                <p style="font-size: 11.5px; color: var(--text-secondary); margin-top: 4px; font-weight: 500;">记录下一个闪光瞬间
+                  🐾</p>
+              </div>
+
+              <!-- 月份筛选 -->
+              <div class="month-filter-scroll">
+                <div class="filter-pill active" onclick="app.filterMemories('all', this)">
+                  全部 🐾
+                </div>
+                <div class="filter-pill" onclick="app.filterMemories('10', this)">
+                  10月
+                  <span class="sub">2025</span>
+                </div>
+                <div class="filter-pill" onclick="app.filterMemories('09', this)">
+                  9月
+                  <span class="sub">2025</span>
+                </div>
+                <div class="filter-pill" onclick="app.filterMemories('08', this)">
+                  8月
+                  <span class="sub">2025</span>
+                </div>
+                <div class="filter-pill" onclick="app.filterMemories('07', this)">
+                  7月
+                  <span class="sub">2025</span>
+                </div>
+                <div class="filter-pill" onclick="app.filterMemories('06', this)">
+                  6月
+                  <span class="sub">2025</span>
+                </div>
+                <div class="filter-pill calendar-btn" onclick="alert('日历选择开发中~')">
+                  <i data-lucide="calendar" style="width: 14px; height: 14px;"></i>
+                </div>
+              </div>
+
+              <!-- 拍立得卡片列表 -->
+              <div id="memories-list-container">
+                <!-- Polaroid 1 -->
+                <div class="polaroid-card memory-item" data-month="10">
+                  <div class="paperclip"></div>
+                  <div class="polaroid-photo-frame">
+                    <img src="cat_autumn.png" alt="玩耍" style="border-radius: 6px;">
+                    <div class="love-badge" style="border: 1px solid rgba(92, 74, 60, 0.08); background: rgba(255, 252, 247, 0.9);">
+                      <i data-lucide="heart" style="width: 10px; height: 10px; fill: var(--accent-peach);"></i>
+                      最爱回忆
+                    </div>
+                    <span class="age-badge" style="border: 1px solid rgba(92, 74, 60, 0.08); background: rgba(255, 252, 247, 0.9);">奶盖 <span class="pet-age-text">2岁</span></span>
+                  </div>
+                  <div class="polaroid-content-card">
+                    <div class="meta-row">
+                      <span class="date">2025.10.24 ☀️</span>
+                    </div>
+                    <h3 class="title">午后的慵懒时光</h3>
+                    <div class="tag-chips">
+                      <span class="chip" style="border: 1px solid rgba(92, 74, 60, 0.08); background: #fffcf7;">📍 阳光公园</span>
+                      <span class="chip" style="border: 1px solid rgba(92, 74, 60, 0.08); background: #fffcf7;">😀 开心</span>
+                    </div>
+                    <p class="desc">阳光透过树叶洒在身上，奶盖在落叶间追逐着飘动的小影子，那一刻，时间都变得温柔了。</p>
+                    <div class="mood-row">
+                      <span class="mood-left">❤️ 心情美美</span>
+                      <span class="mood-right">奶盖 <span class="pet-age-text">2岁</span></span>
+                    </div>
+                    <div class="stats-footer">
+                      <div class="stats-left">
+                        <span class="stat-btn liked" onclick="app.toggleLike(this, 128)">
+                          <i data-lucide="heart" style="width: 14px; height: 14px; fill: #c97951;"></i> <span
+                            class="count">128</span>
+                        </span>
+                        <span class="stat-btn" onclick="alert('评论功能开发中~')">
+                          <i data-lucide="message-square" style="width: 14px; height: 14px;"></i> 16
+                        </span>
+                      </div>
+                      <i data-lucide="share-2" class="btn-share" style="width: 14px; height: 14px;"
+                        onclick="alert('分享成功！')"></i>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Polaroid 2 -->
+                <div class="polaroid-card memory-item" data-month="10">
+                  <div class="tape-deco"></div>
+                  <div class="polaroid-photo-frame">
+                    <img src="cat_sleeping.png" alt="睡觉" style="border-radius: 6px;">
+                    <div class="index-badge" style="border: 1px solid rgba(92, 74, 60, 0.08); background: rgba(255, 252, 247, 0.9); color: var(--accent-peach);">2</div>
+                    <span class="age-badge" style="border: 1px solid rgba(92, 74, 60, 0.08); background: rgba(255, 252, 247, 0.9);">yrs</span>
+                  </div>
+                  <div class="polaroid-content-card">
+                    <div class="meta-row">
+                      <span class="date">2025.10.05 ☁️</span>
+                    </div>
+                    <h3 class="title">睡成一团的小奶盖</h3>
+                    <div class="tag-chips">
+                      <span class="chip" style="border: 1px solid rgba(92, 74, 60, 0.08); background: #fffcf7;">📍 客厅沙发</span>
+                      <span class="chip" style="border: 1px solid rgba(92, 74, 60, 0.08); background: #fffcf7;">😀 慵懒</span>
+                    </div>
+                    <p class="desc">玩了一下午，终于累到睡成一团。呼吸轻轻的，毛茸茸的狗肚子一起一伏，好想时间在这一刻静止呀。</p>
+                    <div class="mood-row">
+                      <span class="mood-left">❤️ 暖乎乎的</span>
+                      <span class="mood-right">奶盖 <span class="pet-age-text">2岁</span></span>
+                    </div>
+                    <div class="stats-footer">
+                      <div class="stats-left">
+                        <span class="stat-btn" onclick="app.toggleLike(this, 96)">
+                          <i data-lucide="heart" style="width: 14px; height: 14px;"></i> <span class="count">96</span>
+                        </span>
+                        <span class="stat-btn" onclick="alert('评论功能开发中~')">
+                          <i data-lucide="message-square" style="width: 14px; height: 14px;"></i> 10
+                        </span>
+                      </div>
+                      <i data-lucide="more-horizontal" class="btn-more" style="width: 14px; height: 14px;"
+                        onclick="alert('更多操作')"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 增加回忆按钮 -->
+              <div class="record-memory-bar">
+                <img
+                  src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e2dcce'><path d='M9 3L7.17 5H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2h-3.17L15 3H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z'/></svg>"
+                  alt="" class="illustration-left">
+                <button class="btn-record-large" onclick="app.openNewMemoryModal()">
+                  + 记录回忆
+                </button>
+                <img
+                  src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e2dcce'><path d='M21 5c-1.11-.01-2 .89-2 2v12c0 1.1-.9 2-2 2H7c-1.1 0-2-.9-2-2V7c0-1.11-.9-2-2-2V3h1.8c.8 0 1.5.5 1.8 1.2L8 8h8l1.4-3.8c.3-.7 1-1.2 1.8-1.2H21v2z'/></svg>"
+                  alt="" class="illustration-right">
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ================= 档案页 ================= -->
+          <div class="page" id="profile-page">
+            <!-- 档案页顶部带有返回按钮，符合截图 5 -->
+            <header class="app-header">
+              <div class="back-btn" onclick="app.goBackFromProfile()" style="border: 2px solid #5c4a3c; box-shadow: 2px 2px 0 #5c4a3c; background: #ffffff;">
+                <i data-lucide="chevron-left" style="width: 20px; height: 20px; stroke-width: 3;"></i>
+              </div>
+              <div class="logo" style="margin-left: -20px;">PetPlanet<span>🐾</span></div>
+              <div class="notification-bell" onclick="alert('暂无未读系统通知哦')">
+                <i data-lucide="bell" style="width: 20px; height: 20px; stroke: #5c4a3c; stroke-width: 2.5;"></i>
+                <div class="badge" style="background: var(--accent-peach);"></div>
+              </div>
+            </header>
+
+            <div class="scrollable-content">
+              <!-- 顶部头像与基础信息 -->
+              <div class="profile-avatar-area">
+                <div class="profile-avatar-outer" style="border: 1.5px solid rgba(92, 74, 60, 0.1); background: #ffffff;">
+                  <div class="profile-avatar-inner" style="border: 1.5px solid rgba(92, 74, 60, 0.08);">
+                    <img src="cat_avatar.png" alt="头像" class="profile-avatar-img">
+                  </div>
+                </div>
+                <h2 class="pet-name-title">
+                  <span class="pet-name-text">奶盖</span>
+                  <span class="edit-icon-btn" onclick="app.openEditProfileModal()" style="border: 1px solid rgba(92, 74, 60, 0.08); background: #fffcf7;">
+                    <i data-lucide="pencil" style="width: 12px; height: 12px; stroke-width: 3;"></i>
+                  </span>
+                </h2>
+                <div class="tag-container" style="display: flex; gap: 6px; justify-content: center;">
+                  <span class="badge-pill" style="border: 1.5px solid #5c4a3c; background: #fffdf9;">🐶 <span class="pet-breed-text">马尔济斯</span></span>
+                  <span class="badge-pill" style="border: 1.5px solid #5c4a3c; background: #fffdf9;">🎂 <span class="pet-age-text">2岁</span></span>
+                  <span class="badge-pill healthy" style="border: 1.5px solid #5c4a3c; background: var(--accent-green-bg); color: var(--accent-green);">💚 健康</span>
+                </div>
+              </div>
+
+              <!-- 基础资料表格 -->
+              <h2 class="section-title"><span class="paw-icon">🐾</span> 基础资料</h2>
+              <div class="profile-details-grid">
+                <div class="profile-detail-card">
+                  <div class="icon-box">
+                    <i data-lucide="calendar"></i>
+                  </div>
+                  <div class="info">
+                    <span class="label">生日</span>
+                    <span class="value pet-birth-text">2023-05-12</span>
+                  </div>
+                </div>
+                <div class="profile-detail-card">
+                  <div class="icon-box">
+                    <i data-lucide="scale"></i>
+                  </div>
+                  <div class="info">
+                    <span class="label">体重</span>
+                    <span class="value"><span class="pet-weight-text">6.20</span> kg</span>
+                  </div>
+                </div>
+                <div class="profile-detail-card">
+                  <div class="icon-box">
+                    <i data-lucide="palette"></i>
+                  </div>
+                  <div class="info">
+                    <span class="label">毛色</span>
+                    <span class="value pet-color-text">奶油白色</span>
+                  </div>
+                </div>
+                <div class="profile-detail-card">
+                  <div class="icon-box">
+                    <i data-lucide="mars" style="color: #8c7361;"></i>
+                  </div>
+                  <div class="info">
+                    <span class="label">性别</span>
+                    <span class="value pet-gender-text">男孩子</span>
+                  </div>
+                </div>
+
+                <div class="profile-detail-card">
+                  <div class="icon-box">
+                    <i data-lucide="award"></i>
+                  </div>
+                  <div class="info">
+                    <span class="label">品种</span>
+                    <span class="value pet-breed-text">马尔济斯</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 健康简报 -->
+              <div class="archive-brief-card">
+                <div class="header-row">
+                  <span class="title">健康简报</span>
+                  <i data-lucide="chevron-right" class="right-arrow" onclick="app.switchTab('health')"></i>
+                </div>
+                <div class="brief-grid">
+                  <div class="stat-box">
+                    <span class="lbl">当前体重</span>
+                    <span class="val"><span class="pet-weight-text">3.85</span><span>kg</span></span>
+                    <div class="progress-bg">
+                      <div class="progress-inner" style="width: 90%;"></div>
+                    </div>
+                  </div>
+                  <div class="stat-box">
+                    <span class="lbl">目标体重</span>
+                    <span class="val">4.20<span>kg</span></span>
+                  </div>
+                  <div class="stat-box">
+                    <span class="lbl">体重趋势 (30天)</span>
+                    <div class="mini-chart" id="archive-weight-spark"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 医疗状态 -->
+              <div class="medical-status-card">
+                <h3 class="title">医疗状态</h3>
+
+                <div class="medical-item">
+                  <div class="left">
+                    <div class="icon-box">
+                      <i data-lucide="syringe"></i>
+                    </div>
+                    <div class="text">
+                      <span class="med-title">核心疫苗 / Core Vaccine</span>
+                      <span class="med-sub">已接种 (Completed)</span>
+                    </div>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 4px;">
+                    <div class="text" style="align-items: flex-end; text-align: right;">
+                      <span class="med-title" style="font-size: 11px; color: var(--text-secondary);">下次接种
+                        2025-10-24</span>
+                      <span class="med-sub">剩余 <span class="alert-days">15</span> 天</span>
+                    </div>
+                    <i data-lucide="chevron-right" class="right-action" style="width: 14px; height: 14px;"></i>
+                  </div>
+                </div>
+
+                <div class="medical-item">
+                  <div class="left">
+                    <div class="icon-box">
+                      <i data-lucide="bug"></i>
+                    </div>
+                    <div class="text">
+                      <span class="med-title">体内驱虫 / Deworming</span>
+                      <span class="med-sub">已完成 (NexGard)</span>
+                    </div>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 4px;">
+                    <div class="text" style="align-items: flex-end; text-align: right;">
+                      <span class="med-title" style="font-size: 11px; color: var(--text-secondary);">下次驱虫
+                        2025-11-01</span>
+                      <span class="med-sub">剩余 <span class="alert-days">23</span> 天</span>
+                    </div>
+                    <i data-lucide="chevron-right" class="right-action" style="width: 14px; height: 14px;"></i>
+                  </div>
+                </div>
+
+                <div class="medical-item">
+                  <div class="left">
+                    <div class="icon-box">
+                      <i data-lucide="shield"></i>
+                    </div>
+                    <div class="text">
+                      <span class="med-title">年度体检 / Annual Checkup</span>
+                      <span class="med-sub">上次体检 2025-04-10</span>
+                    </div>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 4px;">
+                    <div class="text" style="align-items: flex-end; text-align: right;">
+                      <span class="med-title" style="font-size: 11px; color: var(--text-secondary);">下次体检
+                        2026-04-10</span>
+                    </div>
+                    <i data-lucide="chevron-right" class="right-action" style="width: 14px; height: 14px;"></i>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 查看全部健康记录按钮 -->
+              <button class="btn-view-all-records" onclick="app.switchTab('health')">
+                <i data-lucide="file-text" style="width: 14px; height: 14px;"></i> 查看全部健康记录
+                <i data-lucide="chevron-right" style="width: 14px; height: 14px; margin-left: auto;"></i>
+              </button>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ================= 底部固定导航栏 ================= -->
+        <nav class="bottom-nav">
+          <div class="nav-item active" onclick="app.switchTab('home')">
+            <div class="icon-circle">
+              <i data-lucide="home" style="width: 20px; height: 20px;"></i>
+            </div>
+            <span class="label">首页</span>
+          </div>
+          <div class="nav-item" onclick="app.switchTab('health')">
+            <div class="icon-circle">
+              <i data-lucide="heart" style="width: 20px; height: 20px;"></i>
+            </div>
+            <span class="label">健康</span>
+          </div>
+          <div class="nav-item" onclick="app.switchTab('life')">
+            <div class="icon-circle">
+              <i data-lucide="paw-print" style="width: 20px; height: 20px;"></i>
+            </div>
+            <span class="label">生活</span>
+          </div>
+          <div class="nav-item" onclick="app.switchTab('memories')">
+            <div class="icon-circle">
+              <i data-lucide="book-open" style="width: 20px; height: 20px;"></i>
+            </div>
+            <span class="label">回忆</span>
+          </div>
+          <div class="nav-item" onclick="app.switchTab('profile')">
+            <div class="icon-circle">
+              <i data-lucide="user" style="width: 20px; height: 20px;"></i>
+            </div>
+            <span class="label">档案</span>
+          </div>
+        </nav>
+
+        <!-- 底部安全条模拟 -->
+        <div class="home-indicator"></div>
+
+        <!-- 互动猫咪看板娘 -->
+        <div class="cute-pet-widget" id="cute-pet-widget" onclick="app.petWidgetTalk()">
+          <div class="pet-bubble" id="pet-bubble">摸摸我喵~ 🐾</div>
+          <svg class="svg-cat" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <!-- 耳朵 -->
+            <path class="cat-ear ear-left" d="M 25 30 L 10 5 L 35 15 Z" fill="#ffffff" stroke="#ffccd5"
+              stroke-width="1.5" stroke-linejoin="round" />
+            <path class="cat-ear-inner ear-left-inner" d="M 23 27 L 14 10 L 30 17 Z" fill="#ffccd5" />
+            <path class="cat-ear ear-right" d="M 75 30 L 90 5 L 65 15 Z" fill="#ffffff" stroke="#ffccd5"
+              stroke-width="1.5" stroke-linejoin="round" />
+            <path class="cat-ear-inner ear-right-inner" d="M 77 27 L 86 10 L 70 17 Z" fill="#ffccd5" />
+            <!-- 头部 -->
+            <circle class="cat-head" cx="50" cy="40" r="30" fill="#ffffff" stroke="#ffe4e6" stroke-width="1.5" />
+            <!-- 蓝眼睛 -->
+            <ellipse class="cat-eye eye-left" cx="38" cy="38" rx="4" ry="6" fill="#5baae6" />
+            <circle class="cat-eye-shine eye-left-shine" cx="37" cy="36" r="1.5" fill="#ffffff" />
+            <ellipse class="cat-eye eye-right" cx="62" cy="38" rx="4" ry="6" fill="#5baae6" />
+            <circle class="cat-eye-shine eye-right-shine" cx="61" cy="36" r="1.5" fill="#ffffff" />
+            <!-- 粉扑红晕 -->
+            <circle class="cat-blush blush-left" cx="30" cy="44" r="3.5" fill="#ffccd5" opacity="0.7" />
+            <circle class="cat-blush blush-right" cx="70" cy="44" r="3.5" fill="#ffccd5" opacity="0.7" />
+            <!-- 鼻子 -->
+            <polygon class="cat-nose" points="50,43 47,41 53,41" fill="#ffaebb" />
+            <!-- 萌系猫嘴 -->
+            <path class="cat-mouth mouth-left" d="M 46 45 Q 48 48 50 45" fill="none" stroke="#4e3c30" stroke-width="2"
+              stroke-linecap="round" />
+            <path class="cat-mouth mouth-right" d="M 50 45 Q 52 48 54 45" fill="none" stroke="#4e3c30" stroke-width="2"
+              stroke-linecap="round" />
+            <!-- 胡须 -->
+            <line x1="22" y1="41" x2="11" y2="39" stroke="#9c8473" stroke-width="1.5" stroke-linecap="round" />
+            <line x1="22" y1="45" x2="13" y2="46" stroke="#9c8473" stroke-width="1.5" stroke-linecap="round" />
+            <line x1="78" y1="41" x2="89" y2="39" stroke="#9c8473" stroke-width="1.5" stroke-linecap="round" />
+            <line x1="78" y1="45" x2="87" y2="46" stroke="#9c8473" stroke-width="1.5" stroke-linecap="round" />
+            <!-- 爪子 -->
+            <path class="cat-paw paw-left" d="M 32 65 C 32 60 40 60 40 65 C 40 70 32 70 32 65" fill="#ffffff"
+              stroke="#ffe4e6" stroke-width="1.5" />
+            <path class="cat-paw paw-right" d="M 60 65 C 60 60 68 60 68 65 C 68 70 60 70 60 65" fill="#ffffff"
+              stroke="#ffe4e6" stroke-width="1.5" />
+          </svg>
+        </div>
+
+      </div>
+    </div>
+
+  </div> <!-- 闭合 .web-container -->
+
+
+  <!-- ================= 弹窗：编辑宠物资料 ================= -->
+  <div class="modal-overlay" id="edit-profile-modal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <span class="modal-title">编辑宠物资料</span>
+        <div class="modal-close" onclick="app.closeModal('edit-profile-modal')">
+          <i data-lucide="x" style="width: 14px; height: 14px;"></i>
+        </div>
+      </div>
+      <div class="modal-body">
+        <form id="edit-profile-form" onsubmit="app.saveProfile(event)">
+          <div class="form-group">
+            <label for="input-name">宠物名字</label>
+            <input type="text" id="input-name" class="form-control" required value="奶盖">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="input-breed">宠物品种</label>
+              <input type="text" id="input-breed" class="form-control" required value="马尔济斯">
+            </div>
+            <div class="form-group">
+              <label for="input-age">宠物年龄</label>
+              <input type="text" id="input-age" class="form-control" required value="3岁">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="input-weight">当前体重 (kg)</label>
+              <input type="number" step="0.01" id="input-weight" class="form-control" required value="3.85">
+            </div>
+            <div class="form-group">
+              <label for="input-birth">出生日期</label>
+              <input type="date" id="input-birth" class="form-control" required value="2021-05-12">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-color">毛色描述</label>
+            <input type="text" id="input-color" class="form-control" required value="奶油白色">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="input-gender">性别</label>
+              <select id="input-gender" class="form-control">
+                <option value="男孩子" selected>男孩子</option>
+                <option value="女孩子">女孩子</option>
+              </select>
+            </div>
+            <div class="form-group" style="display: none;">
+              <label for="input-chip">芯片编号</label>
+              <input type="text" id="input-chip" class="form-control" required value="981000987654321">
+            </div>
+          </div>
+          <div class="form-group" style="display: none;">
+            <label for="input-blood">血统</label>
+            <input type="text" id="input-blood" class="form-control" required value="纯种 (CKU)">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-btn btn-cancel" onclick="app.closeModal('edit-profile-modal')">取消</button>
+        <button type="submit" form="edit-profile-form" class="modal-btn btn-submit">保存修改</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================= 弹窗：记录新回忆 ================= -->
+  <div class="modal-overlay" id="new-memory-modal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <span class="modal-title">新建成长回忆</span>
+        <div class="modal-close" onclick="app.closeModal('new-memory-modal')">
+          <i data-lucide="x" style="width: 14px; height: 14px;"></i>
+        </div>
+      </div>
+      <div class="modal-body">
+        <form id="new-memory-form" onsubmit="app.saveMemory(event)">
+          <div class="form-group">
+            <label for="input-mem-title">回忆标题</label>
+            <input type="text" id="input-mem-title" class="form-control" required placeholder="如：拆开新玩具的快乐">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="input-mem-date">记录日期</label>
+              <input type="date" id="input-mem-date" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="input-mem-weather">天气/心情图标</label>
+              <select id="input-mem-weather" class="form-control">
+                <option value="☀️" selected>晴天 ☀️</option>
+                <option value="☁️">阴天 ☁️</option>
+                <option value="🌧️">雨天 🌧️</option>
+                <option value="❄️">雪天 ❄️</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="input-mem-loc">地点标签</label>
+              <input type="text" id="input-mem-loc" class="form-control" required placeholder="如：客厅沙发">
+            </div>
+            <div class="form-group">
+              <label for="input-mem-mood">心情描述</label>
+              <input type="text" id="input-mem-mood" class="form-control" required placeholder="如：开心、慵懒">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-mem-desc">回忆内容</label>
+            <textarea id="input-mem-desc" class="form-control" required placeholder="记录下这一刻发生的美好故事..."></textarea>
+          </div>
+          <div class="form-group">
+            <label for="input-mem-img">选择照片素材</label>
+            <select id="input-mem-img" class="form-control">
+              <option value="dog_main_chibi.png" selected>主图 - 森林木托上的奶盖</option>
+              <option value="dog_jump.png">玩耍 - 飞跃天际的奶盖</option>
+              <option value="dog_sit.png">睡觉 - 乖乖坐着的奶盖</option>
+              <option value="dog_run.png">运动 - 阳光公园的奶盖</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-btn btn-cancel" onclick="app.closeModal('new-memory-modal')">取消</button>
+        <button type="submit" form="new-memory-form" class="modal-btn btn-submit">发布回忆</button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide/dist/umd/lucide.js"></script>
+  <!-- 核心逻辑 JS -->
+  <script src="app.js"></script>
+</body>
+
+</html>

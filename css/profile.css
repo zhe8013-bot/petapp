@@ -1,0 +1,357 @@
+/* === 档案页特定样式 === */
+.profile-avatar-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.profile-avatar-outer {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: var(--shadow-light), var(--shadow-dark);
+  padding: 6px;
+  position: relative;
+}
+
+.profile-avatar-outer::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 50%;
+  border: 1px dashed #eedab3;
+  animation: rotate 20s linear infinite;
+}
+
+.profile-avatar-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: var(--shadow-inner-light), var(--shadow-inner-dark);
+}
+
+.profile-avatar-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-avatar-area .pet-name-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.profile-avatar-area .edit-icon-btn {
+  font-size: 13px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  background: #ffffff;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-light), var(--shadow-dark);
+}
+
+.profile-avatar-area .tag-container {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.profile-avatar-area .badge-pill {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  background: #ffffff;
+  color: var(--text-secondary);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.02);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.profile-avatar-area .badge-pill.healthy {
+  background: var(--accent-green-bg);
+  color: var(--accent-green);
+}
+
+/* 基础资料网格 */
+.profile-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.profile-detail-card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 14px;
+  box-shadow: var(--shadow-light), var(--shadow-dark);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-detail-card .icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #fdf5ef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #c97951;
+  flex-shrink: 0;
+}
+
+.profile-detail-card:nth-child(2) .icon-box {
+  background: #fdf5ef;
+  color: #c97951;
+}
+
+.profile-detail-card:nth-child(3) .icon-box {
+  background: #fdf5ef;
+  color: #c97951;
+}
+
+.profile-detail-card:nth-child(4) .icon-box {
+  background: #fdf2ec;
+  color: #ff8c94;
+}
+
+.profile-detail-card:nth-child(5) .icon-box {
+  background: #fbf7f2;
+  color: #7c7a69;
+}
+
+.profile-detail-card:nth-child(6) .icon-box {
+  background: #fbf7f2;
+  color: #dca74e;
+}
+
+.profile-detail-card .info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-detail-card .label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.profile-detail-card .value {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-top: 2px;
+}
+
+/* 档案内的健康简报 */
+.archive-brief-card {
+  background: var(--card-bg);
+  border-radius: 26px;
+  padding: 16px;
+  box-shadow: var(--shadow-light), var(--shadow-dark);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  margin-bottom: 22px;
+}
+
+.archive-brief-card .header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.archive-brief-card .title {
+  font-size: 14.5px;
+  font-weight: 700;
+}
+
+.archive-brief-card .right-arrow {
+  color: var(--text-tertiary);
+  cursor: pointer;
+}
+
+.archive-brief-card .brief-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.2fr;
+  gap: 10px;
+}
+
+.archive-brief-card .stat-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.archive-brief-card .stat-box .lbl {
+  font-size: 10px;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.archive-brief-card .stat-box .val {
+  font-size: 18px;
+  font-weight: 700;
+  font-family: 'Outfit';
+  margin-top: 4px;
+}
+
+.archive-brief-card .stat-box .val span {
+  font-size: 10px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.archive-brief-card .progress-bg {
+  width: 100%;
+  height: 6px;
+  background: #f0ede6;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.archive-brief-card .progress-inner {
+  height: 100%;
+  background: linear-gradient(to right, #4e3629, #8c6e5e);
+  border-radius: 3px;
+}
+
+.archive-brief-card .mini-chart {
+  height: 38px;
+  width: 100%;
+}
+
+/* 医疗状态 */
+.medical-status-card {
+  background: var(--card-bg);
+  border-radius: 26px;
+  padding: 16px;
+  box-shadow: var(--shadow-light), var(--shadow-dark);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  margin-bottom: 22px;
+}
+
+.medical-status-card .title {
+  font-size: 14.5px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.medical-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #f6f3ed;
+}
+
+.medical-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.medical-item .left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.medical-item .icon-box {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #fdf5ef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #c97951;
+}
+
+.medical-item:nth-child(2) .icon-box {
+  background: #f6f6ef;
+  color: #7c7a69;
+}
+
+.medical-item:nth-child(3) .icon-box {
+  background: #fdf2ec;
+  color: #ff8c94;
+}
+
+.medical-item .text {
+  display: flex;
+  flex-direction: column;
+}
+
+.medical-item .med-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.medical-item .med-sub {
+  font-size: 10px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.medical-item .med-sub span {
+  font-weight: 700;
+}
+
+.medical-item .med-sub span.alert-days {
+  color: #c97951;
+}
+
+.medical-item .right-action {
+  color: var(--text-tertiary);
+  cursor: pointer;
+}
+
+.btn-view-all-records {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 14px;
+  box-shadow: 0 3px 12px rgba(92, 74, 60, 0.06);
+  border: 1px solid rgba(92, 74, 60, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+}
+
+.btn-view-all-records:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(92, 74, 60, 0.1);
+}
+
+.btn-view-all-records:active {
+  transform: scale(0.97);
+}

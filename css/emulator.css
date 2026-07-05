@@ -1,0 +1,240 @@
+/* 电脑端手机外壳模拟器 */
+.phone-emulator {
+  position: relative;
+  width: 393px;
+  height: 852px;
+  /* iPhone 15 Pro 比例 */
+  background: #1e1b18;
+  border: 11px solid #2d2925;
+  border-radius: 48px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4),
+    0 0 0 4px #423e39,
+    0 20px 80px rgba(92, 68, 54, 0.15);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  z-index: 5;
+}
+
+/* 顶部灵动岛/听筒模拟 */
+.phone-emulator::after {
+  content: '';
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 28px;
+  background: #000000;
+  border-radius: 20px;
+  z-index: 1000;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+/* 手机屏幕 */
+.phone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #fffbf9;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+
+/* 状态栏模拟 */
+.status-bar {
+  height: 40px;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  z-index: 999;
+  pointer-events: none;
+  background: transparent;
+}
+
+.status-bar .right-icons {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.status-bar i {
+  font-size: 11px;
+}
+
+/* 底部 Home 条 */
+.home-indicator {
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 4.5px;
+  background: var(--text-primary);
+  border-radius: 10px;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* 手机内动态流体气泡 */
+.phone-screen .bg-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(36px);
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.phone-screen .blob-pink {
+  width: 220px;
+  height: 220px;
+  background: #ffaebb;
+  top: 10%;
+  left: -20px;
+  animation: cuteFluidMove1 20s ease-in-out infinite alternate;
+}
+
+.phone-screen .blob-yellow {
+  width: 250px;
+  height: 250px;
+  background: #ffe7a3;
+  bottom: 15%;
+  right: -50px;
+  animation: cuteFluidMove2 24s ease-in-out infinite alternate;
+}
+
+.phone-screen .blob-blue {
+  width: 200px;
+  height: 200px;
+  background: #bae3f5;
+  top: 50%;
+  left: 20%;
+  animation: cuteFluidMove3 18s ease-in-out infinite alternate;
+}
+
+@keyframes cuteFluidMove1 {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate(30px, 40px) scale(1.15) rotate(30deg);
+  }
+  100% {
+    transform: translate(-20px, 10px) scale(0.9) rotate(-15deg);
+  }
+}
+
+@keyframes cuteFluidMove2 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-40px, -20px) scale(0.8);
+  }
+  100% {
+    transform: translate(20px, 15px) scale(1.05);
+  }
+}
+
+@keyframes cuteFluidMove3 {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate(-10px, 30px) scale(1.2) rotate(45deg);
+  }
+  100% {
+    transform: translate(20px, -10px) scale(0.85) rotate(-20deg);
+  }
+}
+
+/* 背景微小浮动装饰 */
+.phone-screen::before {
+  content: '🌸';
+  position: absolute;
+  top: 15%;
+  left: 8%;
+  font-size: 16px;
+  opacity: 0.25;
+  animation: floatDecor 6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.phone-screen::after {
+  content: '✨';
+  position: absolute;
+  top: 45%;
+  right: 6%;
+  font-size: 14px;
+  opacity: 0.3;
+  animation: floatDecor 8s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes floatDecor {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(10deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+/* 移动端自适应：在手机上全屏运行，隐藏模拟的手机外壳和状态栏 */
+@media (max-width: 600px),
+(display-mode: standalone) {
+  body {
+    background: var(--bg-color);
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .phone-emulator {
+    width: 100vw;
+    height: 100vh;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .phone-emulator::after {
+    display: none;
+    /* 隐藏模拟的刘海 */
+  }
+
+  .status-bar {
+    display: none;
+    /* 隐藏模拟的状态栏，显示手机真实的系统状态栏 */
+  }
+
+  .home-indicator {
+    display: none;
+    /* 隐藏模拟的底部横条 */
+  }
+
+  .content-viewport {
+    margin-bottom: 74px;
+  }
+
+  .bottom-nav {
+    height: 74px;
+    padding-bottom: calc(env(safe-area-inset-bottom, 10px) + 5px);
+    /* 安全区域留出 */
+  }
+}

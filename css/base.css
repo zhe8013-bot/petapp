@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Zhi+Mang+Xing&display=swap');
+
+/* 全局变量定义 */
+:root {
+  --bg-color: #fbf7ee;
+  /* 手账纸温和奶油黄 */
+  --card-bg: #ffffff;
+  /* 纯白手账卡片背景 */
+  --text-primary: #5c4a3c;
+  /* 手写墨水暖褐色 */
+  --text-secondary: #8c7361;
+  /* 暖棕次要文本 */
+  --text-tertiary: #b09988;
+  /* 辅助文本 */
+
+  --accent-peach: #e49e82;
+  /* 复古暖橘粉 */
+  --accent-orange: #f0beaa;
+  /* 奶油甜橘 */
+  --accent-green: #7fa167;
+  /* 手账森林绿 */
+  --accent-green-bg: #eff4eb;
+  /* 暖绿浅背景 */
+  --accent-brown: #5c4a3c;
+  /* 钢笔墨棕色 */
+  --accent-olive: #928b70;
+  /* 橄榄灰绿 */
+  --accent-active-tab: #eff4eb;
+  /* 激活Tab手账绿背景 */
+
+  /* 可爱彩色标签 */
+  --accent-pink-soft: #f5dfd5;
+  /* 极软奶油粉 */
+  --accent-yellow-cute: #ffd175;
+  /* 软黄 */
+  --accent-blue-cute: #bae3f5;
+  /* 软蓝 */
+
+  /* 柔和阴影与微妙边框 */
+  --shadow-light: -1px -1px 4px rgba(255, 255, 255, 0.9);
+  --shadow-dark: 2px 3px 10px rgba(92, 74, 60, 0.06);
+  --shadow-inner-light: inset -1px -1px 3px rgba(255, 255, 255, 0.85);
+  --shadow-inner-dark: inset 1px 1px 3px rgba(92, 74, 60, 0.04);
+  --shadow-cute: 0 6px 20px rgba(92, 74, 60, 0.06);
+  --border-handdrawn: 1.5px solid rgba(92, 74, 60, 0.12);
+
+  --font-main: 'Fredoka', 'Noto Sans SC', -apple-system, sans-serif;
+}
+
+/* 全局重置 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-color);
+  background-image: 
+    repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(228, 158, 130, 0.08) 27px, rgba(228, 158, 130, 0.08) 28px),
+    repeating-linear-gradient(90deg, transparent, transparent 27px, rgba(228, 158, 130, 0.08) 27px, rgba(228, 158, 130, 0.08) 28px);
+  background-size: 28px 28px;
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* PC双栏容器 */
+.web-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 70px;
+  width: 100%;
+  max-width: 1100px;
+  padding: 20px;
+  z-index: 10;
+  position: relative;
+}
+
+/* 左侧品牌墙 */
+.web-brand-aside {
+  flex: 1;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  color: var(--text-primary);
+  user-select: none;
+}
+
+.web-brand-aside .brand-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.web-brand-aside .brand-logo {
+  font-size: 44px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -1px;
+  text-shadow: 0 4px 12px rgba(255, 174, 187, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.web-brand-aside .brand-logo span {
+  font-size: 32px;
+  animation: logoPawRotate 4s ease-in-out infinite;
+}
+
+@keyframes logoPawRotate {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(15deg);
+  }
+}
+
+.web-brand-aside .brand-slogan {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  line-height: 1.3;
+}
+
+.web-brand-aside .brand-desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.web-brand-aside .brand-meta-card {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 28px;
+  padding: 24px;
+  box-shadow: 0 8px 32px rgba(92, 74, 60, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.web-brand-aside .meta-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.web-brand-aside .meta-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--accent-pink-soft);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.web-brand-aside .meta-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.web-brand-aside .meta-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.web-brand-aside .meta-value {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* 电脑端展示时，左侧在手机/小屏幕下隐藏 */
+@media (max-width: 900px) {
+  .web-brand-aside {
+    display: none;
+  }
+  .web-container {
+    gap: 0;
+    justify-content: center;
+  }
+}
+
+/* 3D 悬浮果冻球 */
+.jelly-glob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.glob-1 {
+  width: 250px;
+  height: 250px;
+  top: -60px;
+  left: -60px;
+  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 225, 230, 0.5) 45%, rgba(255, 180, 200, 0.15) 85%);
+  box-shadow: 0 30px 60px rgba(255, 174, 187, 0.2),
+    inset -15px -15px 30px rgba(255, 150, 170, 0.15),
+    inset 15px 15px 30px rgba(255, 255, 255, 0.9);
+  animation: floatGlob1 18s ease-in-out infinite alternate;
+}
+
+.glob-2 {
+  width: 320px;
+  height: 320px;
+  bottom: -100px;
+  right: -50px;
+  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.95) 0%, rgba(254, 240, 215, 0.5) 45%, rgba(255, 220, 180, 0.15) 85%);
+  box-shadow: 0 30px 60px rgba(255, 220, 180, 0.18),
+    inset -15px -15px 30px rgba(255, 210, 160, 0.12),
+    inset 15px 15px 30px rgba(255, 255, 255, 0.9);
+  animation: floatGlob2 22s ease-in-out infinite alternate;
+}
+
+.glob-3 {
+  width: 140px;
+  height: 140px;
+  bottom: 25%;
+  left: 20%;
+  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.95) 0%, rgba(220, 245, 255, 0.6) 45%, rgba(180, 230, 255, 0.2) 85%);
+  box-shadow: 0 20px 40px rgba(180, 230, 255, 0.15),
+    inset -10px -10px 20px rgba(160, 220, 255, 0.15),
+    inset 10px 10px 20px rgba(255, 255, 255, 0.9);
+  animation: floatGlob3 15s ease-in-out infinite alternate;
+}
+
+@keyframes floatGlob1 {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  100% {
+    transform: translate(40px, 30px) scale(1.05) rotate(15deg);
+  }
+}
+
+@keyframes floatGlob2 {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  100% {
+    transform: translate(-30px, -50px) scale(0.95) rotate(-12deg);
+  }
+}
+
+@keyframes floatGlob3 {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  100% {
+    transform: translate(30px, -30px) scale(1.1) rotate(20deg);
+  }
+}
